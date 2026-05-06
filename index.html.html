@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Keerthammulu 🌊💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+overflow:hidden;
+height:100vh;
+background:
+linear-gradient(to bottom, rgba(255,183,197,.4), rgba(135,206,235,.5)),
+url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+/* Waves */
+.wave{
+position:fixed;
+bottom:0;
+width:200%;
+height:160px;
+background:rgba(255,255,255,.25);
+border-radius:40%;
+animation:wave 14s linear infinite;
+}
+.wave:nth-child(2){
+bottom:20px;
+opacity:.5;
+animation-duration:20s;
+}
+@keyframes wave{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* Pages */
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+animation:fade 1s ease;
+padding:20px;
+overflow-y:auto;
+}
+.active{display:flex;}
+
+@keyframes fade{
+from{opacity:0;transform:scale(1.05);}
+to{opacity:1;transform:scale(1);}
+}
+
+/* Glass */
+.glass{
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(15px);
+padding:25px;
+border-radius:25px;
+box-shadow:0 10px 40px rgba(0,0,0,.2);
+max-width:750px;
+width:100%;
+text-align:center;
+}
+
+/* Buttons */
+button{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+font-size:16px;
+cursor:pointer;
+margin:10px;
+transition:.3s;
+}
+.yes{
+background:#4CAF50;
+color:white;
+box-shadow:0 0 15px #4CAF50;
+}
+.yes:hover{transform:scale(1.1);}
+.no{
+background:#ff5f7e;
+color:white;
+position:absolute;
+}
+
+/* Intro */
+.shell{
+font-size:80px;
+cursor:pointer;
+animation:pulse 2s infinite;
+}
+@keyframes pulse{
+50%{transform:scale(1.15);}
+}
+
+/* Typing */
+#typed{
+font-size:17px;
+line-height:1.8;
+white-space:pre-line;
+text-align:left;
+}
+
+/* Photo Grid */
+.photoGrid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+gap:10px;
+margin-top:20px;
+}
+.photoGrid img{
+width:100%;
+height:100px;
+object-fit:cover;
+border-radius:12px;
+border:4px solid white;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+transition:.3s;
+}
+.photoGrid img:hover{
+transform:scale(1.2) rotate(2deg);
+}
+
+/* Hearts */
+.heart{
+position:absolute;
+font-size:22px;
+animation:rise 6s linear infinite;
+}
+@keyframes rise{
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
+}
+
+/* Gift */
+.gift{
+font-size:110px;
+cursor:pointer;
+animation:bounce 1.5s infinite;
+}
+@keyframes bounce{
+50%{transform:translateY(-15px);}
+}
+
+/* Big Title */
+.bigTitle{
+font-size: clamp(28px, 6vw, 80px);
+font-weight:700;
+letter-spacing:4px;
+text-align:center;
+width:100%;
+color:white;
+text-shadow:
+0 0 10px rgba(255,255,255,0.8),
+0 0 20px rgba(255,182,193,0.9),
+0 0 40px rgba(255,105,180,0.8);
+animation: glow 2s infinite alternate;
+}
+@keyframes glow{
+from{ text-shadow:0 0 10px #fff,0 0 20px pink;}
+to{ text-shadow:0 0 20px #fff,0 0 40px hotpink;}
+}
+
+/* Stars */
+.star{
+font-size:45px;
+cursor:pointer;
+color:rgba(255,255,255,.6);
+}
+.star.active{
+color:gold;
+transform:scale(1.2);
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div class="wave"></div>
+<div class="wave"></div>
+
+<!-- INTRO -->
+<div class="page active" id="intro">
+<div class="glass">
+<div class="shell" onclick="start()">🐚</div>
+<h2>Tap to Begin ✨</h2>
+</div>
+</div>
+
+<!-- YES/NO -->
+<div class="page" id="page1">
+<div class="glass">
+<h1>🌊 Ready for your Birthday Surprise? 💖</h1>
+<button class="yes" onclick="next('page1','giftPage')">YES 💕</button>
+<button class="no" id="noBtn" onmouseover="moveNo()">NO 🥺</button>
+<p id="msg"></p>
+</div>
+</div>
+
+<!-- GIFT -->
+<div class="page" id="giftPage">
+<div class="glass">
+<div class="gift" onclick="next('giftPage','photoPage')">🎁</div>
+<h2>Open Your Gift</h2>
+</div>
+</div>
+
+<!-- PHOTOS -->
+<div class="page" id="photoPage">
+<div class="glass">
+<h2>✨ Our Memories ✨</h2>
+
+<div class="photoGrid">
+<img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg"><img src="photo4.jpg"><img src="photo5.jpg">
+<img src="photo6.jpg"><img src="photo7.jpg"><img src="photo8.jpg"><img src="photo9.jpg"><img src="photo10.jpg">
+<img src="photo11.jpg"><img src="photo12.jpg"><img src="photo13.jpg"><img src="photo14.jpg"><img src="photo15.jpg">
+<img src="photo16.jpg"><img src="photo17.jpg"><img src="photo18.jpg"><img src="photo19.jpg"><img src="photo20.jpg">
+</div>
+
+<button class="yes" onclick="next('photoPage','messagePage'); typeMsg()">Next 💕</button>
+</div>
+</div>
+
+<!-- MESSAGE -->
+<div class="page" id="messagePage">
+<div class="glass">
+<h2>💌 For You</h2>
+<p id="typed"></p>
+<button class="yes" onclick="next('messagePage','finalPage')">Next ✨</button>
+</div>
+</div>
+
+<!-- FINAL TITLE -->
+<div class="page" id="finalPage">
+<h1 class="bigTitle">HAPPY BIRTHDAY KEERTHAMMULU!!😘💖</h1>
+<br><br>
+<button class="yes" onclick="next('finalPage','ratePage')">Rate 💖</button>
+</div>
+
+<!-- RATING -->
+<div class="page" id="ratePage">
+<div class="glass">
+<h2>💖 Hope you loved it 💖</h2>
+<br>
+<span class="star" onclick="rate(1)">★</span>
+<span class="star" onclick="rate(2)">★</span>
+<span class="star" onclick="rate(3)">★</span>
+<span class="star" onclick="rate(4)">★</span>
+<span class="star" onclick="rate(5)">★</span>
+<p id="rateText"></p>
+</div>
+</div>
+
+<script>
+
+/* Start */
+function start(){
+next('intro','page1');
+document.getElementById('music').play();
+}
+
+/* Switch */
+function next(a,b){
+document.getElementById(a).classList.remove('active');
+document.getElementById(b).classList.add('active');
+}
+
+/* No button */
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.left=Math.random()*80+"vw";
+btn.style.top=Math.random()*80+"vh";
+let msgs=["Nope 😏","Say yes 🥺","Not acceptable 💕","Try again 😂"];
+document.getElementById("msg").innerText=msgs[Math.floor(Math.random()*msgs.length)];
+}
+
+/* Typing */
+let text=`To my dear Keerthammulu💖,
+
+I don’t even know where to begin, because you’re not just my cousin, you’ve always been something so much more than that. In a house where I’m supposed to be the eldest, somehow with you, I’ve always been the youngest…and honestly, that’s one of the most comforting feelings I’ve ever known.
+
+You became the elder sister I never had, without even trying. The way you’ve always looked out for me, the way you’ve understood me without explanations, the way you’ve made space for me to just *be* it’s something I carry with me every single day.
+
+And “Buddakekki”… that name is not just a nickname. It’s a whole world of memories, laughter, silly moments, inside jokes, and a kind of love that only we understand. Every time I hear it or even think about it, it hits me in the softest way… like a reminder that I’ve been loved in such a pure, uncomplicated way. It genuinely brings me those quiet, happy tears the kind that don’t hurt, but heal.
+
+You’ve been my safe place, my comfort person, my silent support system even when we’re not talking. You’ve made growing up feel less scary and life feel a little warmer. And I don’t think I’ve ever properly told you how much that means to me.
+
+On your birthday, I just want you to know this you are deeply loved, not just for what you do, but for who you are. For your heart, your warmth, your presence… everything. I hope life gives you all the happiness, peace, and love that you’ve given me so effortlessly.
+
+No matter how much we grow, no matter where life takes us, I’ll always be your “Buddakekki”… and you’ll always be my "Kekki"  my forever elder sister in a world where I’m supposed to be the elder.
+
+I love you more than words can hold. Always have, always will🫂💖.
+
+I may not be able to take you to the beach and celebrate your day, but this is me bringing beach to you😘💖
+
+Happy Birthday! 💖✨`;
+
+let i=0;
+function typeMsg(){
+function t(){
+if(i<text.length){
+document.getElementById("typed").innerHTML+=text.charAt(i);
+i++;
+setTimeout(t,30);
+}}
+t();
+}
+
+/* Hearts */
+setInterval(()=>{
+let h=document.createElement('div');
+h.className='heart';
+h.innerHTML='💖';
+h.style.left=Math.random()*100+'vw';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},400);
+
+/* Rating */
+function rate(n){
+document.querySelectorAll('.star').forEach((s,i)=>{
+s.classList.toggle('active',i<n);
+});
+document.getElementById("rateText").innerText="You gave "+n+" ⭐ 💖";
+}
+
+</script>
+
+</body>
+</html>
